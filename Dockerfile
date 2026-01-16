@@ -98,6 +98,16 @@ COPY --from=builder ${FS_PREFIX} ${FS_PREFIX}
 
 RUN cp -r ${FS_PREFIX}/etc/freeswitch ${FS_PREFIX}/default_freeswitch_conf
 
+RUN sed -i \
+    -e 's|<load module="mod_signalwire"/>|<!-- <load module="mod_signalwire"/> -->|' \
+    -e 's|<load module="mod_av"/>|<!-- <load module="mod_av"/> -->|' \
+    -e 's|<load module="mod_spandsp"/>|<!-- <load module="mod_spandsp"/> -->|' \
+    ${FS_PREFIX}/default_freeswitch_conf/autoload_configs/modules.conf.xml
+
+RUN sed -i 's|<param name="listen-ip" value="::"/>|<param name="listen-ip" value="0.0.0.0"/>|' \
+    ${FS_PREFIX}/default_freeswitch_conf/autoload_configs//event_socket.conf.xml
+
+
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
 
