@@ -85,7 +85,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libuuid1 libpcre3 libsqlite3-0 zlib1g libedit2 libcurl4 libssl3 \
-    libevent-core-2.1-7 libevent-pthreads-2.1-7 libpq5 libopus0 \
+    libevent-2.1-7 libevent-pthreads-2.1-7 \
+    libpq5 libopus0 \
     libspeex1 libspeexdsp1 libsndfile1 libtiff6 libjpeg62-turbo \
     libldns3 liblua5.2-0 libpng16-16 procps wget \
     libavformat59 libswscale6 libavcodec59 libavutil57 libswresample4 \
